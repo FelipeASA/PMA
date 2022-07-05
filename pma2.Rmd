@@ -1,0 +1,67 @@
+---
+title: "Piloto Marco de Área"
+output:
+  html_document:
+    theme: lumen
+    highlight: tango
+    toc: True
+    df_print: paged
+    css: "style.css"
+    
+date: '2022-06-30'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(lubridate)
+library(feather)
+library(Rcpp)
+library(ggplot2)
+library(haven)
+library(tidyverse)
+library(dplyr)
+library(haven)
+library(tibble)
+library(readxl)
+library(DT)
+library(xfun)
+
+options(scipen=999)
+
+base <- read_xlsx("base_completa.xlsx")
+tabla1 <- read_xlsx("tabla1.xlsx")
+```
+```{css echo=FALSE}
+.columns{display: flex:}
+
+main {display: flex;
+  align-items: center;
+  justify-content: center;}
+
+```
+
+## R Markdown {.tabset .tabset-fade .tabset-pills}
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+
+
+### **Base Completa** 
+```{r echo=FALSE}
+base %>% 
+datatable(extensions = 'Buttons',
+            options = list(dom = 'Blfrtip',
+                           buttons = c('copy', 'csv', 'excel', 'print'),
+                           lengthMenu = list(c(25,50,-1),
+                                             c(25,50,"All"))))
+```
+
+### **Reporte Visitas UPAs**
+
+
+
+```{r  echo=FALSE}
+tabla1
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
